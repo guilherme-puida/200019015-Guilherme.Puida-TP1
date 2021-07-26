@@ -12,8 +12,9 @@ public class Main {
                 case 4 -> menu.buscaProduto();
                 case 5 -> menu.cadastroVenda();
                 case 6 -> menu.mostrarProdutos();
-                case 7 -> running = false;
-                default -> System.out.println("Insira uma opção válida.");
+                case 7 -> menu.mostrarVendas();
+                case 8 -> running = false;
+                default -> menu.opcaoInvalida();
             }
         }
     }

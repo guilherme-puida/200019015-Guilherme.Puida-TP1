@@ -8,6 +8,9 @@ public class Menu {
     static private final Scanner input = new Scanner(System.in);
 
 
+    /**
+     * Tenta receber um input do usuário até ele ser um int.
+     */
     private static int receberInt() {
         int ans;
         while (true) {
@@ -22,6 +25,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Tenta receber um input do usuário até ele ser um double.
+     */
     private static double receberDouble() {
         double ans;
         while (true) {
@@ -37,6 +43,9 @@ public class Menu {
     }
 
 
+    /**
+     * Imprime o cabeçalho do menu principal e recebe a escolha do usuário.
+     */
     public int escolha() {
         System.out.print("""
 
@@ -47,7 +56,8 @@ public class Menu {
                 4 - Busca por produto
                 5 - Cadastro de venda
                 6 - Mostrar produtos em estoque
-                7 - Sair
+                7 - Listar vendas
+                8 - Sair
 
                 Escolha uma opção do menu (1-7):""");
 
@@ -55,6 +65,9 @@ public class Menu {
     }
 
 
+    /**
+     * Cadastra um novo cliente.
+     */
     public void cadastroCliente() {
         System.out.println("Insira a quantidade de clientes que deseja cadastrar:");
         int qtd = receberInt();
@@ -62,17 +75,17 @@ public class Menu {
         if (qtd < 0) return;
 
         for (int i = 0; i < qtd; i++) {
-            System.out.printf("Insira o nome do cliente %d%n", i + 1);
+            System.out.printf("Insira o nome do cliente %d\n", i + 1);
             String nome = input.nextLine();
 
-            System.out.printf("Insira o endereço do cliente %d%n", i + 1);
+            System.out.printf("Insira o endereço do cliente %d\n", i + 1);
             String endereco = input.nextLine();
 
-            System.out.printf("Insira o telefone do cliente %d%n", i + 1);
+            System.out.printf("Insira o telefone do cliente %d\n", i + 1);
             String telefone = input.nextLine();
 
             clientes.adicionarCliente(nome, endereco, telefone);
-            System.out.printf("Cliente %d cadastrado%n", i + 1);
+            System.out.printf("Cliente %d cadastrado\n", i + 1);
 
             if (i < qtd - 1) {
                 System.out.println("Pressione 'Enter' para continuar");
@@ -81,8 +94,12 @@ public class Menu {
         }
 
         System.out.println("Pressione 'Enter' para voltar ao menu.");
+        input.nextLine();
     }
 
+    /**
+     * Busca e altera de clientes já cadastrados.
+     */
     public void buscaCliente() {
         Scanner input = new Scanner(System.in);
 
@@ -92,8 +109,9 @@ public class Menu {
         Clientes.Cliente cliente = clientes.checarCliente(nome);
 
         if (cliente == null) {
-            System.out.printf("O cliente %s não está registrado.%n", nome);
+            System.out.printf("O cliente '%s' não está registrado.\n", nome);
             System.out.println("Pressione 'Enter' para voltar ao menu.");
+            input.nextLine();
             return;
         }
 
@@ -140,6 +158,9 @@ public class Menu {
         input.nextLine();
     }
 
+    /**
+     *  Cadastra um novo produto.
+     */
     public void cadastroNovoProduto() {
 
         System.out.println("Insira a quantidade de produtos que deseja cadastrar:");
@@ -148,25 +169,25 @@ public class Menu {
         if (num < 0) return;
 
         for (int i = 0; i < num; i++) {
-            System.out.printf("Insira o nome do produto %d%n", i + 1);
+            System.out.printf("Insira o nome do produto %d\n", i + 1);
             String nome = input.nextLine();
 
-            System.out.printf("Insira a descrição do produto %d%n", i + 1);
+            System.out.printf("Insira a descrição do produto %d\n", i + 1);
             String desc = input.nextLine();
 
-            System.out.printf("Insira o valor de compra do produto %d%n", i + 1);
+            System.out.printf("Insira o valor de compra do produto %d (somente números)\n", i + 1);
             double valor = receberDouble();
 
-            System.out.printf("Insira a porcentagem de lucro do produto %d (somente números)%n", i + 1);
+            System.out.printf("Insira a porcentagem de lucro do produto %d (somente números)\n", i + 1);
             double lucro = receberDouble();
 
-            System.out.printf("Insira a quantidade em estoque do produto %d%n", i + 1);
+            System.out.printf("Insira a quantidade em estoque do produto %d (número inteiro)\n", i + 1);
             int qtd = receberInt();
 
             produtos.adicionarProduto(nome, desc, valor, lucro, qtd);
-            System.out.printf("Produto %d cadastrado.%n", i + 1);
+            System.out.printf("Produto %d cadastrado.\n", i + 1);
 
-            if (i < qtd - 1) {
+            if (i < num - 1) {
                 System.out.println("Pressione 'Enter' para continuar.");
                 input.nextLine();
             }
@@ -175,6 +196,9 @@ public class Menu {
         input.nextLine();
     }
 
+    /**
+     * Busca e altera produtos já cadastrados.
+     */
     public void buscaProduto() {
         System.out.println("Insira o nome do produto:");
         String n = input.nextLine();
@@ -182,7 +206,8 @@ public class Menu {
         Produtos.Produto produto = produtos.checarProduto(n);
 
         if (produto == null) {
-            System.out.printf("O produto %s não está cadastrado.%n", n);
+            System.out.printf("O produto '%s' não está cadastrado.\n", n);
+            input.nextLine();
             return;
         }
         System.out.println(produto);
@@ -241,6 +266,9 @@ public class Menu {
         input.nextLine();
     }
 
+    /**
+     * Cadastra uma venda.
+     */
     public void cadastroVenda() {
         int escolha;
 
@@ -253,12 +281,12 @@ public class Menu {
             if (escolha < 0) return;
 
             if (escolha > clientes.quantidadeClientes()) {
-                System.out.printf("Escolha um cliente válido (1-%d)%n", clientes.quantidadeClientes());
+                System.out.printf("Escolha um cliente válido (1-%d)\n", clientes.quantidadeClientes());
             }
         } while(escolha < 1 || escolha > clientes.quantidadeClientes());
 
         Clientes.Cliente cliente = clientes.clientePorIndex(escolha - 1);
-        System.out.printf("Cliente escolhido: %s.%n", cliente.nome);
+        System.out.printf("Cliente escolhido: %s.\n", cliente.nome);
 
         Vendas.Venda venda = vendas.criarVenda(cliente);
 
@@ -288,14 +316,42 @@ public class Menu {
         } while (escolha > 0);
 
         vendas.adicionarVenda(venda);
-        System.out.println("Venda realizada. Pressione 'Enter' para voltar ao menu");
+        System.out.println("Venda realizada. Pressione 'Enter' para voltar ao menu.");
         input.nextLine();
     }
 
+    /**
+     * Mostra todos os produtos já cadastrados.
+     */
     public void mostrarProdutos() {
         System.out.println("\n\t\t\t\t\t\t\t\tProdutos");
         System.out.println(produtos.listarProdutos());
         System.out.println("Pressione 'Enter' para voltar ao menu.");
         input.nextLine();
     }
+
+    /**
+     * Mostra todas as vendas já cadastradas.
+     */
+    public void mostrarVendas() {
+        if (vendas.listarVendas() == null) {
+            System.out.println("Nenhuma venda foi cadastrada");
+        } else {
+            System.out.println("\t\t\tLista de Vendas");
+            System.out.println(vendas.listarVendas());
+        }
+
+        System.out.println("Pressione 'Enter' para voltar ao menu.");
+        input.nextLine();
+    }
+
+
+    /**
+     * Exibe erro se o usuário inserir uma opção do menu inválida.
+     */
+    public void opcaoInvalida() {
+        System.out.println("Opção inválida. Pressione 'Enter' para voltar ao menu.");
+        input.nextLine();
+    }
+
 }
