@@ -59,7 +59,7 @@ public class Menu {
                 7 - Listar vendas
                 8 - Sair
 
-                Escolha uma opção do menu (1-7):""");
+                Escolha uma opção do menu (1-8):""");
 
         return receberInt();
     }
