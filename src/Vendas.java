@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Funcionalidade não obrigatória, mas recomendada pela professora.
  * https://aprender3.unb.br/mod/forum/discuss.php?d=138461#p373245
  */
-
 
  class Vendas {
      /**
@@ -49,6 +45,30 @@ import java.util.Map;
              return s.toString();
          }
 
+     }
+
+    /**
+     * Construtor. Gera 10 vendas aleatórias com até 3 produtos distintos com base nos clientes e produtos
+     * já existentes.
+     */
+     public Vendas(Clientes clientes, Produtos produtos) {
+         Random random = new Random();
+         for (int i = 0; i < 10; i++) {
+             int clienteIndex = random.nextInt(clientes.quantidadeClientes());
+             Venda venda = new Venda(clientes.clientePorIndex(clienteIndex));
+
+             int qtdProdutos = random.nextInt(3) + 1;
+             for (int j = 0; j < qtdProdutos; j++) {
+                 int produtoIndex = random.nextInt(produtos.quantidadeProdutos());
+                 Produtos.Produto produto = produtos.produtoPorIndex(produtoIndex);
+                 int qtdVendida = random.nextInt(21) + 1;
+
+                 venda.adicionarProduto(produto, qtdVendida);
+                 produto.fazerVenda(qtdVendida);
+             }
+
+             adicionarVenda(venda);
+         }
      }
 
      private final List<Venda> listaVendas = new ArrayList<>();

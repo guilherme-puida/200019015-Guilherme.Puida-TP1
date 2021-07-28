@@ -13,8 +13,8 @@ public class Produtos {
             String nome = String.format("P%d", i);
             String desc = String.format("Desc%d", i);
             double valor = random.nextDouble() * 10 + 20;
-            double lucro = random.nextDouble() * 10 + 10;
-            int qtd = random.nextInt(101);
+            double lucro = 10 + (60 - 20) * random.nextDouble();
+            int qtd = random.nextInt(101) + 20;
 
             adicionarProduto(nome, desc, valor, lucro, qtd);
         }

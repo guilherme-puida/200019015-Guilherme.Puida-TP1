@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu {
     static Clientes clientes = new Clientes();
     static Produtos produtos = new Produtos();
-    static Vendas vendas = new Vendas();
+    static Vendas vendas = new Vendas(clientes, produtos);
 
     static private final Scanner input = new Scanner(System.in);
 
