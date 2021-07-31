@@ -42,6 +42,12 @@ public class Menu {
         }
     }
 
+    private static char receberChar() {
+        char ans = input.next().charAt(0);
+        input.nextLine();
+        return ans;
+    }
+
 
     /**
      * Imprime o cabeçalho do menu principal e recebe a escolha do usuário.
@@ -117,41 +123,33 @@ public class Menu {
 
         System.out.println(cliente);
         System.out.println("Deseja alterar as informações do cliente? (S/N)");
-        char c = input.next().charAt(0);
-        input.nextLine();
+        char c = receberChar();
 
         if (c != 'S' && c != 's') return;
 
-        String ans;
 
         System.out.println("Deseja alterar o nome do cliente? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira o novo nome do cliente: ");
-            ans = input.nextLine();
-            cliente.nome = ans;
+            cliente.nome = input.nextLine();
         }
 
         System.out.println("Deseja alterar o endereço do cliente? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira o novo endereço do cliente:");
-            ans = input.nextLine();
-            cliente.endereco = ans;
+            cliente.endereco = input.nextLine();
         }
 
         System.out.println("Deseja alterar o telefone do cliente? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira o novo telefone do cliente:");
-            ans = input.nextLine();
-            cliente.telefone = ans;
+            cliente.telefone = input.nextLine();
         }
 
         System.out.println("Cliente alterado com sucesso. Pressione 'Enter' para voltar ao menu.");
@@ -212,14 +210,12 @@ public class Menu {
         }
         System.out.println(produto);
         System.out.println("Deseja alterar as informações do produto? (S/N)");
-        char c = input.next().charAt(0);
-        input.nextLine();
+        char c = receberChar();
 
         if (c != 's' && c != 'S') return;
 
         System.out.println("Deseja alterar o nome do produto? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira o nome do produto:");
@@ -227,8 +223,7 @@ public class Menu {
         }
 
         System.out.println("Deseja alterar a descrição do produto? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira a descrição do produto:");
@@ -236,8 +231,7 @@ public class Menu {
         }
 
         System.out.println("Deseja alterar o valor de venda do produto? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira o valor de venda do produto:");
@@ -245,8 +239,7 @@ public class Menu {
         }
 
         System.out.println("Deseja alterar a porcentagem de lucro do produto? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira a porcentagem de lucro do produto:");
@@ -254,8 +247,7 @@ public class Menu {
         }
 
         System.out.println("Deseja alterar a quantidade em estoque do produto? (S/N)");
-        c = input.next().charAt(0);
-        input.nextLine();
+        c = receberChar();
 
         if (c == 'S' || c == 's') {
             System.out.println("Insira a quantidade em estoque do produto:");
